@@ -77,6 +77,7 @@
             return;
 
         [self setOnPlay:NO forPlayerKey:key];
+        [[AVAudioSession sharedInstance] setActive:enabled withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
         RCTResponseSenderBlock callback = [self callbackForKey:key];
         if (callback) {
             callback(
