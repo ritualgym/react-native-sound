@@ -77,7 +77,6 @@
             return;
 
         [self setOnPlay:NO forPlayerKey:key];
-        [[AVAudioSession sharedInstance] setActive:false withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
         RCTResponseSenderBlock callback = [self callbackForKey:key];
         if (callback) {
             callback(
@@ -186,7 +185,7 @@ RCT_EXPORT_METHOD(setCategory
 RCT_EXPORT_METHOD(enableInSilenceMode : (BOOL)enabled) {
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [session setActive:enabled error:nil];
+    [session setActive:enabled withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
 }
 
 RCT_EXPORT_METHOD(prepare
